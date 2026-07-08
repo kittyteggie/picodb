@@ -1,2 +1,4 @@
 picodb
 picoDB.c
+*.bak
+*.picodb
