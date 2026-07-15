@@ -5,7 +5,7 @@
 #define MAX_VARS 64
 #define MAX_LINE 128
 #define MAX_VAL 64
-#define DB_FILE "database.picodb"
+const char *DB_FILE;
 
 typedef struct {
   char name[32];
@@ -92,9 +92,14 @@ void loadDB() {
   }
   fclose(f);
 }
-int main() {
+int main(int argc, char *argv[]) {
   char line[MAX_LINE];
   char cmd[16], name[32], rawValue[MAX_VAL];
+  if (argc < 2) {
+    printf("Usage: %s <filename.picodb>\n", argv[0]);
+    return 1;
+  }
+  DB_FILE = argv[1];
   // Initial input (load)
   loadDB();
   printf("picoDB\nSET, ADD, PRINT or EXIT\n");
